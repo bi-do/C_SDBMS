@@ -124,6 +124,7 @@ void NodeSearchByNameUI()
             return;
         default:
             printf("잘못된 입력입니다. 다시 입력하세요\n");
+            scanf("%*s");
             scanf_s("%d", &a);
             break;
         }
