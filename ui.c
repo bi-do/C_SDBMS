@@ -9,8 +9,15 @@ int ViewUI(void)
 {
     int a = 0;
     system("cls");
-    printf_s("[1]NEW [2]SEARCH [3]SEARCH RANGE [4]PRINT [0]EXIT\n");
-    scanf_s("%d", &a);
+    printf_s("[1]NEW [2]SEARCH [3]SEARCH RANGE [4]PRINT [5]EXIT\n");
+    scanf_s("%d%*c", &a);
+    while (a == 0)
+    {
+        printf("잘못 된 입력입니다. 다시 입력해주세요\n");
+        scanf("%*s");
+        scanf_s("%d%*c", &a);
+    }
+
     return a;
 }
 
@@ -18,7 +25,7 @@ void EventLoop()
 {
     INPUTTYPE input = 0;
 
-    while ((INPUTTYPE)(input = ViewUI()) != 0)
+    while ((INPUTTYPE)(input = ViewUI()) != 5)
     {
         switch (input)
         {
@@ -35,6 +42,7 @@ void EventLoop()
             PrintList();
             break;
         default:
+
             break;
         }
     }
@@ -97,7 +105,7 @@ void NodeSearchByNameUI()
         case 1:
             printf("편집할 내용을 입력하세요\n");
             EditNode(pTmp);
-            if (pTmp->NEW !=true)
+            if (pTmp->NEW != true)
             {
                 printf("파일에 편집한 내용을 저장하시겠습니까? Y / N\n");
                 char ch = getchar();
